@@ -1,0 +1,61 @@
+<div class="cart-container">
+    <br>
+    <h2>Checkout & Payment</h2>
+    <br><br><br><br>
+    <div class="table-container" *ngIf="products.length == 0">
+        <h4>No products in cart...</h4>
+    </div>
+    <div class="table-container" *ngIf="products.length != 0">
+      <table class="header-table">
+        <tr>
+          <th class="product-details">Product details</th>
+          <th class="price-col">Price</th>
+          <th class="quantity-col">Quantity</th>
+          <th class="total-price-col-top">Total price</th>
+        </tr>
+      </table>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <tr *ngFor="let product of products">
+            <td class="product-details">
+            <div class="block">
+              <img [src]="product.primaryMediaUrl" alt="Product Image" class="inline-block clickable" [routerLink]="['product-details', product.id]"/>
+              <p class="inline-block title clickable" [routerLink]="'/product-details/' + product.id">{{ product.cardTitle }}</p>
+            </div>
+            </td>
+            <td class="price-col"><p>{{ product.listOfPlans[0].price.amount }}{{ product.listOfPlans[0].price.currency }}</p></td>
+            <td class="quantity-col">
+                <div class="block">
+                    <div class="inline-block no-inline"><p class="btn btn1" (click)="subProduct(product.id);">-</p></div>
+                    <div class="inline-block no-inline"><p class="btn btn3">{{ getProductCount(product.id) }}</p></div>
+                    <div class="inline-block no-inline"><p class="btn btn2" (click)="addProduct(product.id);">+</p></div>
+                </div>
+            </td>
+            <td class="total-price-col-bottom">
+                <p>{{ getProductCount(product.id)*product.listOfPlans[0].price.amount }}{{ product.listOfPlans[0].price.currency }}</p>
+                <p *ngIf="product?.listOfPlans?.[0]?.isShippingChargesRequired === true" class="shipping-top">Shipping: {{ product.listOfPlans[0].shippingCharges.amount }}{{ product.listOfPlans[0].shippingCharges.currency}}</p>
+            </td>
+            <td class="remove-product"><mat-icon class="clickable" (click)="removeProduct(product.id);">remove_shopping_cart</mat-icon></td>
+          </tr>
+        </table>
+      </div>
+      <br><br><br>
+      <table class="footer-table">
+        <tr>
+          <td class="checkout" rowspan="3"><div class="checkout-container clickable" [routerLink]="['']" (click)="clearCart();"><h3 class="checkout-text">Checkout</h3><span class="out-arrow"> ➾</span></div></td>
+          <td class="subtotal">Subtotal</td>
+          <td class="subtotal-price">{{ getTotalPrice() }}</td>
+        </tr>
+        <tr>
+          <td class="shipping">Shipping</td>
+          <td class="shipping-price">{{ getTotalShippingCost() }}</td>
+        </tr>
+        <tr>
+          <td class="total">Total</td>
+          <td class="total-price">{{ getTotalProductCost() }}</td>
+        </tr>
+      </table>
+      
+    </div>
+  </div>
+  

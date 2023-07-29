@@ -1,0 +1,51 @@
+.header-container {
+    background-color: #f2f2f2;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .left {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  .center {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .center table {
+    border-collapse: collapse;
+    margin: 0 auto; 
+  }
+  
+  .center th {
+    padding: 8px 16px;
+    margin: 0 25px 0 25px;
+    transition: all 0.3s ease; 
+
+  }
+  
+  .right {
+    flex: 1;
+    text-align: right;
+    margin-right: 20px;
+  }
+
+  .center th:hover {
+    font-size: 1.15em; 
+    margin: 5px 0; 
+  }
+
+  th {
+    border-right: darkgray 1px solid;
+    border-left: darkgray 1px solid;
+  }
+
+  h2,th,.cart-icon {
+    cursor: pointer;
+  }
+
+  

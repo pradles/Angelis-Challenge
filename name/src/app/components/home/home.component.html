@@ -1,0 +1,30 @@
+<div class="main-container">
+    <div class="filter-container">
+      <app-filter (filterCriteria)="onFilterCriteria($event)"></app-filter>
+    </div>
+
+    <ng-container *ngIf="filteredProducts.length === 0; else productsList">
+        <h4>No items found...</h4>
+    </ng-container>
+    <ng-template #productsList>
+    <div class="products-container">
+        <div class="product-card" *ngFor="let product of filteredProducts">
+        <mat-card>
+            <img mat-card-image [src]="product.primaryMediaUrl" alt="Product Image" [routerLink]="['product-details', product.id]" class="clickable"/>
+            <mat-card-header>
+                <mat-card-title [routerLink]="['product-details', product.id]" class="clickable">{{ product.cardTitle }}</mat-card-title>
+                <mat-card-subtitle>{{ product.cardDescription }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="inline-content">
+                <div class="inline-content-left">
+                  <p [routerLink]="['product-details', product.id]" class="clickable price">Price: {{ product.listOfPlans[0].price.amount }}{{ product.listOfPlans[0].price.currency }}</p>
+                </div>
+                <div class="inline-content-right">
+                  <p>Quantity: {{ product.availableQuantity }}</p>
+                </div>
+              </mat-card-content>
+        </mat-card>
+        </div>
+    </div>
+    </ng-template>
+</div>

@@ -1,0 +1,26 @@
+
+<div class="product-detail-container" *ngIf="product">
+    <div class="product-img-info">
+        <div class="product-image">
+            <img [src]="product.primaryMediaUrl" alt="Product Image"/>
+        </div>
+        <div class="product-info">
+            <h1>{{ product.cardTitle }}</h1>
+            <hr><br>
+            <h2 class="price">{{ product.listOfPlans[0].price.amount }}{{ product.listOfPlans[0].price.currency }}</h2>
+            <br>
+            <p>Quantity: {{ product.availableQuantity }}</p>
+            <div class="add-to-cart">
+                <button mat-raised-button color="primary" class="btn-cart" *ngIf="!isInCart" (click)="addToCart(product.id)" [routerLink]="['']">Add to Cart</button>
+                <button mat-raised-button color="primary" class="btn-cart" *ngIf="isInCart" disabled>Already in Cart</button>
+                <p class="ships-from">Ships from: {{ product.locations[0].description }}</p>
+            </div>
+            
+        </div>
+    </div>
+    <div class="product-description">
+        <h3>Description:</h3>
+        <p>{{ product.cardDescription }}</p>
+    </div>
+  </div>
+  

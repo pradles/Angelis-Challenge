@@ -1,0 +1,45 @@
+<div class="filter-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Filter:</mat-card-title>
+      </mat-card-header>
+      <br>
+      <mat-card-content>
+        <div class="filter-field">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Item Name" [(ngModel)]="productTitle" (input)="applyFilter()" />
+          </mat-form-field>
+        </div>
+        <br>
+        <div class="filter-field-price">
+          <mat-form-field class="price-form">
+            <input matInput type="number" placeholder="Min Price" [(ngModel)]="minPrice" (input)="applyFilter()" />
+          </mat-form-field>
+          <span class="separator">-</span>
+          <mat-form-field class="price-form">
+            <input matInput type="number" placeholder="Max Price" [(ngModel)]="maxPrice" (input)="applyFilter()" />
+          </mat-form-field>
+          <span class="separator2">€</span>
+        </div>
+        <div class="filter-field">
+          <mat-slider min="0" max="10000" step="100" showTickMarks discrete (change)="applyFilter()">
+            <input value="0" matSliderStartThumb [(ngModel)]="minPrice" (input)="applyFilter()" />
+            <input value="10000" matSliderEndThumb [(ngModel)]="maxPrice" (input)="applyFilter()" />
+          </mat-slider>
+        </div>
+        <br>
+        <div class="filter-field">
+          <mat-form-field>
+            <mat-label>Order By</mat-label>
+            <mat-select [(ngModel)]="orderBy" (selectionChange)="applyFilter()">
+              <mat-option value="Aasc">Alphabetically ascending</mat-option>
+              <mat-option value="Adesc">Alphabetically descending</mat-option>
+              <mat-option value="Pasc">Price ascending</mat-option>
+              <mat-option value="Pdesc">Price descending</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

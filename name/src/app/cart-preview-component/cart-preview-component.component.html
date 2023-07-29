@@ -1,0 +1,34 @@
+<div class="cart-preview-container">
+    <p class="items">Cart items: {{ getAllCount() }}</p>
+    <div *ngFor="let product of products">
+        <img [src]="product.primaryMediaUrl" alt="Product Image" [routerLink]="['product-details', product.id]" class="clickable" (click)="onCloseDialog();"/>
+        <div class="product-info">
+            <div class="block top">
+                <div class="inline-block">
+                <h3 [routerLink]="['product-details', product.id]" class="clickable" (click)="onCloseDialog();">{{ product.cardTitle }}</h3>
+                <p class="remove clickable" (click)="removeProduct(product.id);">Remove from cart</p>
+                </div>
+                <div class="block">
+                    <div class="bordr">
+                    <div class="inline-block no-inline"><p class="btn btn1" (click)="subProduct(product.id);">-</p></div>
+                    <div class="inline-block no-inline"><p class="btn btn2" (click)="addProduct(product.id);">+</p></div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            
+            <div class="block price">
+                <p *ngIf="getProductCount(product.id) > 1" class="inline-block price-number">
+                  {{ product.listOfPlans[0].price.amount }} x {{ getProductCount(product.id) }}         
+                </p>
+                <p class="inline-block price-price">
+                  {{ product.listOfPlans[0].price.amount * getProductCount(product.id) }}{{ product.listOfPlans[0].price.currency }}
+                </p>
+            </div>              
+        </div>
+        <hr>
+    </div>
+    <div *ngIf="products.length != 0" class="end">
+        <p class="out clickable" [routerLink]="['cart']" (click)="onCloseDialog();">Continue To Checkout <span class="out-arrow clickable" [routerLink]="['cart']" (click)="onCloseDialog();"> ➾</span></p>
+    </div>
+</div>

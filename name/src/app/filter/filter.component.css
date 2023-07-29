@@ -1,0 +1,35 @@
+.filter-field-price {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: -20px;
+}
+
+.price-form {
+  flex: 1;
+  max-width: 45%;
+}
+
+.separator {
+  margin: 20px 10px;
+}
+
+.separator2 {
+  margin: 20px 0px 0px 5px;
+}
+
+mat-slider {
+  width: 80%;
+}
+
+/* Hide the spin buttons for numeric input */
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide the spin buttons for Firefox */
+[type="number"] {
+  -moz-appearance: textfield;
+}
